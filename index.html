@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GlossaryKit</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>GlossaryKit</h1>
+      <p>Your personal technical glossary manager</p>
+    </header>
+
+    <main>
+      <section class="add-section">
+        <h2>Add a Term</h2>
+        <input
+          type="text"
+          id="term-input"
+          placeholder="Term (e.g. API, Endpoint, Payload)"
+          autocomplete="off"
+        />
+        <textarea
+          id="definition-input"
+          placeholder="Definition..."
+          rows="4"
+        ></textarea>
+        <button id="add-btn">Add Term</button>
+      </section>
+
+      <section class="search-section">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search terms and definitions..."
+          autocomplete="off"
+        />
+      </section>
+
+      <section class="export-section">
+        <button id="export-json-btn">⬇ Export JSON</button>
+        <button id="export-csv-btn">⬇ Export CSV</button>
+      </section>
+
+      <section class="glossary-section">
+        <div id="glossary-list"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

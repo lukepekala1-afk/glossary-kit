@@ -1,0 +1,91 @@
+:root {
+  --primary: #2563eb;
+  --bg: #f1f5f9;
+  --card-bg: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --danger: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+header {
+  margin-bottom: 2rem;
+}
+header h1 {
+  font-size: 2rem;
+  color: var(--primary);
+}
+header p {
+  color: var(--muted);
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.term-card {
+  background: var(--card-bg);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.term-card .term {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.term-card .def {
+  color: var(--muted);
+  margin-top: 0.25rem;
+}
+
+.card-actions button {
+  background: transparent;
+  color: var(--muted);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  border: 1px solid #e2e8f0;
+}
+
+.card-actions .delete-btn {
+  color: var(--danger);
+}
