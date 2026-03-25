@@ -41,12 +41,16 @@
       <section class="export-section">
         <button id="export-json-btn">⬇ Export JSON</button>
         <button id="export-csv-btn">⬇ Export CSV</button>
+        <label id="import-label" for="import-input">⬆ Import JSON</label>
+        <input type="file" id="import-input" accept=".json" />
       </section>
 
       <section class="glossary-section">
         <div id="glossary-list"></div>
       </section>
     </main>
+
+    <div id="toast"></div>
 
     <script src="app.js"></script>
   </body>

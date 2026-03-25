@@ -1,91 +1,303 @@
+/* ── Reset & Variables ────────────────────────────────── */
 :root {
   --primary: #2563eb;
+  --primary-hover: #1d4ed8;
   --bg: #f1f5f9;
   --card-bg: #ffffff;
   --text: #1e293b;
   --muted: #64748b;
+  --border: #e2e8f0;
   --danger: #ef4444;
+  --success: #22c55e;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: system-ui, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
   background: var(--bg);
   color: var(--text);
-  padding: 2rem;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+}
+
+/* ── Layout ───────────────────────────────────────────── */
+main {
   max-width: 700px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
+/* ── Header ───────────────────────────────────────────── */
 header {
-  margin-bottom: 2rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
 }
+
 header h1 {
   font-size: 2rem;
+  font-weight: 800;
   color: var(--primary);
+  letter-spacing: -0.5px;
 }
+
 header p {
   color: var(--muted);
+  margin-top: 0.25rem;
+  font-size: 1rem;
 }
 
-input,
+/* ── Sections ─────────────────────────────────────────── */
+.add-section,
+.search-section,
+.export-section,
+.glossary-section {
+  background: var(--card-bg);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+}
+
+.add-section h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+/* ── Inputs ───────────────────────────────────────────── */
+input[type="text"],
 textarea {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #cbd5e1;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--border);
   border-radius: 0.5rem;
   font-size: 1rem;
+  font-family: inherit;
+  color: var(--text);
+  background: #fff;
+  transition: border-color 0.15s;
   margin-bottom: 0.75rem;
+  display: block;
 }
 
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* ── Buttons ──────────────────────────────────────────── */
 button {
   background: var(--primary);
-  color: white;
+  color: #fff;
   border: none;
-  padding: 0.6rem 1.2rem;
+  padding: 0.65rem 1.25rem;
   border-radius: 0.5rem;
   cursor: pointer;
   font-size: 0.95rem;
+  font-family: inherit;
+  font-weight: 500;
+  transition: background 0.15s;
 }
 
 button:hover {
-  opacity: 0.9;
+  background: var(--primary-hover);
+}
+
+/* ── Export / Import row ──────────────────────────────── */
+.export-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+#export-json-btn,
+#export-csv-btn {
+  background: var(--card-bg);
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+}
+
+#export-json-btn:hover,
+#export-csv-btn:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Hide native file input, style the label as a button */
+#import-input {
+  display: none;
+}
+
+#import-label {
+  display: inline-block;
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1.5px solid #16a34a;
+  padding: 0.65rem 1.25rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-family: inherit;
+  font-weight: 500;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+#import-label:hover {
+  background: #16a34a;
+  color: #fff;
+}
+
+/* ── Glossary cards ───────────────────────────────────── */
+.glossary-section {
+  min-height: 80px;
+}
+
+.empty-state {
+  color: var(--muted);
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 0.95rem;
 }
 
 .term-card {
-  background: var(--card-bg);
-  border-radius: 0.5rem;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 0.6rem;
   padding: 1rem 1.25rem;
   margin-bottom: 0.75rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
+  transition: box-shadow 0.15s;
 }
 
-.term-card .term {
+.term-card:last-child {
+  margin-bottom: 0;
+}
+
+.term-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-content .term {
   font-weight: 700;
   font-size: 1.05rem;
+  color: var(--text);
 }
-.term-card .def {
+
+.card-content .def {
   color: var(--muted);
-  margin-top: 0.25rem;
+  margin-top: 0.3rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.card-content .meta {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.4rem;
+}
+
+/* ── Card action buttons ──────────────────────────────── */
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex-shrink: 0;
 }
 
 .card-actions button {
   background: transparent;
   color: var(--muted);
-  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border);
+  padding: 0.25rem 0.65rem;
   font-size: 0.8rem;
-  border: 1px solid #e2e8f0;
+  border-radius: 0.4rem;
+}
+
+.card-actions button:hover {
+  background: var(--border);
+  color: var(--text);
 }
 
 .card-actions .delete-btn {
   color: var(--danger);
+  border-color: #fecaca;
+}
+
+.card-actions .delete-btn:hover {
+  background: #fef2f2;
+  color: var(--danger);
+}
+
+/* ── Toast notification ───────────────────────────────── */
+#toast {
+  position: fixed;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e293b;
+  color: #fff;
+  padding: 0.65rem 1.5rem;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 999;
+  white-space: nowrap;
+}
+
+#toast.show {
+  opacity: 1;
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.6rem;
+  }
+  .export-section {
+    flex-direction: column;
+  }
+  .export-section button,
+  #import-label {
+    width: 100%;
+    text-align: center;
+  }
+  .term-card {
+    flex-direction: column;
+  }
+  .card-actions {
+    flex-direction: row;
+  }
 }
